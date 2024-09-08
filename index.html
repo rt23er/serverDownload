@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>资源下载</title>
+</head>
+<body>
+<link rel="stylesheet" href="./cdn/elment.css">
+<script src="./cdn/vue.js"></script>
+<script src="./cdn/elment.js"></script>
+<style>
+    html {
+
+    }
+    .img {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .img img {
+        width: 100%;
+    }
+    span {
+        font-size: 0.8rem;
+        margin: 0.1rem;
+    }
+    .el-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .el-button {
+        width: 80%;
+    }
+</style>
+
+<div id="app">
+    <el-row style="margin-top: 20px ; display: flex; flex-wrap: wrap">
+        <el-button type="primary">
+            <!--        下载链接-->
+            <span @click="downloadFile('低压防爆电机样本.zip')">
+          点击下载低压防爆电机样本
+       </span>
+        </el-button>
+        <el-button type="primary">
+           <span @click="downloadFile('普通电机样本.zip')">
+          点击下载普通电机样本
+       </span>
+        </el-button>
+        <el-button type="primary">
+           <span @click="downloadFile('高压电机样本.zip')">
+          点击下载高压电机样本
+       </span>
+        </el-button>
+    </el-row>
+
+    <div class="img">
+        <img src="img.png" alt="">
+    </div>
+    <h3 style="text-align: center">
+        关于我们
+    </h3>
+    <div>
+        <p>
+            {{msg}}
+        </p>
+    </div>
+
+
+
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: '我公司代理销售卧龙电气南阳防爆集团股份有限公司生产的全系列电机及附属产品，正品保证，价格优惠\n' +
+                '业务人员电话：13937770193'
+        },
+        methods: {
+            downloadFile(fileName) {
+                // 创建一个隐藏的链接元素
+                const link = document.createElement('a');
+
+                // 设置资源路径和下载文件名
+                link.href = `./${fileName}`; // 资源的路径
+                link.download = fileName; // 下载时的文件名
+
+                // 隐藏链接
+                link.style.display = 'none';
+
+                // 将链接添加到文档中
+                document.body.appendChild(link);
+
+                // 模拟点击链接以触发下载
+                link.click();
+
+                // 下载后移除链接
+                document.body.removeChild(link);
+            },
+        }
+    })
+
+
+</script>
+</body>
+</html>
